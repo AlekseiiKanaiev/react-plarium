@@ -1,0 +1,59 @@
+.color-picker{
+    border: 1px black solid;
+    border-radius: 2px;
+    width: fit-content;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: relative;
+}
+button{
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    position: relative;
+}
+.vertical-devider{
+    border-right: 1px solid grey;
+    height: 100%;
+}
+.hex-color{
+    width: 100px;
+    text-align: left;
+    padding: 15px;
+}
+.color-box{
+    display: block;
+    width: 15px;
+    height: 15px;
+    margin: auto;
+    /* border: 1px solid black */
+}
+
+.box-arrow {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    top: 55px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid white;
+    z-index: 1;
+    cursor: auto;
+}
+.select-box{
+    position: absolute;
+    right: 0;
+    top: 65px;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: -5px 10px 20px grey, 5px 10px 20px grey ;
+}
