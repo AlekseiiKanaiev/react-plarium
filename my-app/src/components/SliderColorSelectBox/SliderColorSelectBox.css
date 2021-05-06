@@ -1,4 +1,63 @@
 .slider-color-select-box{
     width: 75%;
-    transition: all 0.5s ease;
+    transition: max-height 0.5s ease, visibilyty 3s ease;
+}
+.slidecontainer{
+    /* width: 100%; */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+}
+.slider{
+    /* margin: 10px; */
+    width: 90%;
+    height: 4px;
+    -webkit-appearance: none;
+    appearance: none;
+}
+.slider::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: grey;
+    cursor: pointer;
+}
+.slider::-moz-range-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: grey;
+    cursor: pointer;
+}
+
+.button-block{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 20px 10px 0;
+}
+.button-block button{
+    width: fit-content;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    padding: 0 15px;
+    transition: opacity 0.3s ease;
+    font-size: 16px;
+}
+.button-block button:hover{
+    opacity: 0.7;
+}
+.ok-button{
+    background: #6AA558;
+    color: white;
+    margin-left: 10px;
+}
+.cancel-button{
+    color: #9A9A9A;
 }

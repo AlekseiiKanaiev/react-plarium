@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './DefaultColorsSelect.css';
 
 interface DefaultColorsBoxProps {
     isDefaultColorsOpen: boolean,
-    openDefaultColorsSelect: (b: boolean) => void,
+    openDefaultColorsSelect: () => void,
 }
 
 function DefaultColorsSelect({isDefaultColorsOpen, openDefaultColorsSelect}: DefaultColorsBoxProps) {
@@ -12,7 +12,7 @@ function DefaultColorsSelect({isDefaultColorsOpen, openDefaultColorsSelect}: Def
             <button
                 type='button'
                 className='default-color-select-button'
-                onClick={() => openDefaultColorsSelect(true)}
+                onClick={openDefaultColorsSelect}
             >
                 {isDefaultColorsOpen ? (
                     <div className='arrow-up button-arrow'/>
@@ -29,4 +29,4 @@ function DefaultColorsSelect({isDefaultColorsOpen, openDefaultColorsSelect}: Def
     )
 }
 
-export default DefaultColorsSelect;
+export default memo(DefaultColorsSelect);

@@ -1,17 +1,13 @@
 .default-colors-select-box{
     width: 60%;
     transition: max-height 0.5s ease, visibilyty 2s ease;
-    max-height: fit-content;
+    /* max-height: fit-content; */
 }
 .defaulr-colors-select-list{
     list-style: none;
     padding: 0;
     margin: 0;
     text-align: left;
-}
-.defaulr-colors-select-list li{
-    cursor: pointer;
-    padding: 0 15px;
 }
 .defaulr-colors-select-list li:not(:last-child){
     border-bottom: 1px solid grey;
@@ -30,4 +26,8 @@
     border: none;
     background: none;
     width: 100%;
+    font-size: 22px;
+    color: #9A9A9A;
+    cursor: pointer;
+    padding: 15px;
 }

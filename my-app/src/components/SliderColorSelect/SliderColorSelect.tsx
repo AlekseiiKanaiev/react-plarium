@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { memo } from 'react';
 import './SliderColorSelect.css';
 
 interface SliderColorSelectProps {
-    hexColor: string,
+    color: string,
     isSliderColorSelectOpen: boolean,
-    openSliderColorSelect: (b: boolean) => void,
+    openSliderColorSelect: () => void,
 }
 
-function SliderColorSelect({hexColor, isSliderColorSelectOpen, openSliderColorSelect}: SliderColorSelectProps){
+function SliderColorSelect({color, isSliderColorSelectOpen, openSliderColorSelect}: SliderColorSelectProps){
     return (
         <div className='slider-color-select'>
-            <button type='button' className='slider-color-select-button' onClick={() => openSliderColorSelect(true)}>
-                <span className='color-box' style={{backgroundColor: hexColor}}></span>
+            <button type='button' className='slider-color-select-button' onClick={openSliderColorSelect}>
+                <span className='color-box' style={{backgroundColor: color}}></span>
             </button>
             <div
                 className='box-arrow'
@@ -21,4 +21,4 @@ function SliderColorSelect({hexColor, isSliderColorSelectOpen, openSliderColorSe
     )
 }
 
-export default SliderColorSelect
+export default memo(SliderColorSelect);

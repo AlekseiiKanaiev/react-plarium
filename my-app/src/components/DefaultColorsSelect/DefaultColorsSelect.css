@@ -4,13 +4,13 @@
 .button-arrow{
     width: 0;
     height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
     margin: auto
 }
 .arrow-down {
-    border-top: 10px solid grey;
+    border-top: 14px solid grey;
 }
 .arrow-up {
-    border-bottom: 10px solid grey;
+    border-bottom: 14px solid grey;
 }
