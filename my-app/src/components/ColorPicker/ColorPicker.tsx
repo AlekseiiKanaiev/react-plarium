@@ -4,7 +4,6 @@ import DefaultColorsBox from '../DefaultColorsBox/DefaultColorsBox';
 import DefaultColorsSelect from '../DefaultColorsSelect/DefaultColorsSelect';
 import SliderColorSelect from '../SliderColorSelect/SliderColorSelect';
 import SliderColorSelectBox from '../SliderColorSelectBox/SliderColorSelectBox';
-import color from '../../interfaceses/color';
 
 function ColorPicker() {
     const colorToHex = (r: number, g: number, b: number): string => {
@@ -23,14 +22,13 @@ function ColorPicker() {
     const sliderBoxEl = useRef(null);
 
     useEffect(() => {
-        const isChildOfSliderBox = (target: HTMLElement): boolean => {
-            return target.offsetParent === sliderBoxEl.current;
-        }
         const clickedOutSide = (event: MouseEvent): void => {
-            if (sliderBoxEl.current !== event.target && !isChildOfSliderBox(event.target as HTMLElement) && isSliderBoxOpen) {
-                console.log('close slider');
-                setRGBColor(savedRGBColor);
-                setIsSliderBoxOpen(false);
+            if (
+                event.target !== sliderBoxEl.current &&
+                (event.target as HTMLElement).offsetParent !== sliderBoxEl.current &&
+                isSliderBoxOpen
+            ) {
+                closeSliderBox();
             }
             if (isDefaultColorsBoxOpen) {
                 setIsDefaultColorsBoxOpen(false);
@@ -44,7 +42,7 @@ function ColorPicker() {
 
     const changeColor = (r: number, g: number, b: number): void => {
         setValue(colorToHex(r, g, b));
-        setRGBColor(Object.assign(rgbColor, {r, g, b}));
+        setRGBColor({r, g, b});
     };
 
     const openSliderBox = (): void => {
@@ -52,11 +50,7 @@ function ColorPicker() {
         setIsSliderBoxOpen(true);
     };
 
-    const changeSingleColor = (newColor: color): void => {
-        setRGBColor(Object.assign({}, rgbColor, newColor));
-    };
-
-    const cancelClickHandler = (): void => {
+    const closeSliderBox = (): void => {
         setRGBColor(savedRGBColor);
         setIsSliderBoxOpen(false);
     };
@@ -74,7 +68,7 @@ function ColorPicker() {
             <SliderColorSelect
                 color={colorToHex(rgbColor.r, rgbColor.g, rgbColor.b)}
                 isSliderColorSelectOpen={isSliderBoxOpen}
-                openSliderColorSelect={() => openSliderBox()}
+                openSliderColorSelect={openSliderBox}
             />
             <div className='vertical-devider'></div>
             <DefaultColorsSelect
@@ -85,8 +79,8 @@ function ColorPicker() {
                 ref={sliderBoxEl}
                 isSliderColorSelectOpen={isSliderBoxOpen}
                 rgbColor={rgbColor}
-                changeSingleColor={changeSingleColor}
-                closeSliderBox={() => cancelClickHandler()}
+                changeSingleColor={(newColor) => setRGBColor(Object.assign({}, rgbColor, newColor))}
+                closeSliderBox={closeSliderBox}
                 applyColorChages={applyColorChages}
             />
             <DefaultColorsBox

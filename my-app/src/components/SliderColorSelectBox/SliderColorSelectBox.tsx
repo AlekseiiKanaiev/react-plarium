@@ -9,7 +9,8 @@ interface SliderColorSelectBoxProps {
     changeSingleColor: (newColor: color) => void,
     closeSliderBox: () => void,
     applyColorChages: () => void,
-}
+};
+
 const SliderColorSelectBox = React.forwardRef<HTMLDivElement, SliderColorSelectBoxProps>(
     ({isSliderColorSelectOpen, rgbColor, changeSingleColor, closeSliderBox, applyColorChages}: SliderColorSelectBoxProps, ref) => {
 
