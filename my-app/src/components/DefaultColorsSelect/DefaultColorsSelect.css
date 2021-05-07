@@ -17,7 +17,7 @@
 .default-colors-select-box{
     width: 60%;
     transition: max-height 0.5s ease, visibilyty 2s ease;
-    /* max-height: fit-content; */
+    overflow: hidden;
 }
 .defaulr-colors-select-list{
     list-style: none;

@@ -11,6 +11,6 @@ export const colorPickerReducer = (state: ColorPickerState, action: Action) => {
         case CHANGE_COLOR:
             return ({...state, ...action.payload});
         default:
-            return state
+            return state;
     }
 }

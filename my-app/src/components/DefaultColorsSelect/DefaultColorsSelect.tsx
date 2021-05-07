@@ -38,12 +38,11 @@ function DefaultColorsSelect({isOpen, openDefaultColorsSelect}: DefaultColorsBox
                 />
             </div>
             <div
-                // ref={defaultColorsBoxEl}
                 className='default-colors-select-box select-box'
-                style={{maxHeight: isOpen ? '400px' : 0, visibility: isOpen ? 'visible' : 'hidden'}}
+                style={{maxHeight: isOpen ? '400px' : 0}}
             >
                 {isOpen && (
-                    <ul style={{visibility: isOpen ? 'visible' : 'hidden'}} className='defaulr-colors-select-list'>
+                    <ul  className='defaulr-colors-select-list'>
                         {colors.map(item => (
                             <li key={item.name}>
                                 <button

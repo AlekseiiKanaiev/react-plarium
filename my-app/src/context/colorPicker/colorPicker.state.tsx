@@ -7,7 +7,7 @@ import IColorPickerState from '../../interfaceses/colorPickerState';
 
 export const ColorPickerState = (props: any) => {
     const initialState: IColorPickerState = {
-        color: '#E0222E'
+        color: '#E0222E',
     };
 
     const [state, dispatch] = useReducer(colorPickerReducer, initialState);

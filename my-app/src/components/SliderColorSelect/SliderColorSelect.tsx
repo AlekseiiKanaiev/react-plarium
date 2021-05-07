@@ -73,7 +73,7 @@ const SliderColorSelectBox = React.forwardRef<HTMLDivElement, SliderColorSelectB
                 <div
                     ref={ref}
                     className='slider-color-select-box select-box'
-                    style={{maxHeight: isOpenSliderSelect ? '300px' : 0, visibility: isOpenSliderSelect ? 'visible' : 'hidden'}}
+                    style={{maxHeight: isOpenSliderSelect ? '400px' : 0, visibility: isOpenSliderSelect ? 'visible' : 'hidden'}}
                 >
                     <div className='sliders'>
                         {Object.keys(rgbColor as rgbColor).map((item: string) => (

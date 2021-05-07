@@ -3,7 +3,8 @@
 }
 .slider-color-select-box{
     width: 75%;
-    transition: max-height 0.5s ease, visibilyty 3s ease;
+    transition: max-height 0.5s ease, visibilyty 2s ease;
+    overflow: hidden;
 }
 .slidecontainer{
     /* width: 100%; */
