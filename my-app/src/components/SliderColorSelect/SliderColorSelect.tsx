@@ -1,4 +1,5 @@
-import React, { memo, useState, useEffect } from 'react';
+import React, { memo, useState, useEffect, useContext } from 'react';
+import { ColorPickerContext } from '../../context/colorPicker/colorPicker.context';
 import './SliderColorSelect.css';
 import rgbColor from '../../interfaceses/rgbColor';
 import { Hex } from '../../types/Hex.type' ;
@@ -22,23 +23,22 @@ const rgbToHex = (rgbColor: rgbColor): string => {
 
 interface SliderColorSelectBoxProps {
     isSliderColorSelectOpen: boolean,
-    color: string,
     openSliderColorSelect: () => void,
     closeSliderBox: () => void,
-    changeColor: (color: Hex) => void,
 };
 
 const SliderColorSelectBox = React.forwardRef<HTMLDivElement, SliderColorSelectBoxProps>(
-    ({isSliderColorSelectOpen, color, openSliderColorSelect, closeSliderBox, changeColor}: SliderColorSelectBoxProps, ref) => {
+    ({isSliderColorSelectOpen, openSliderColorSelect, closeSliderBox}: SliderColorSelectBoxProps, ref) => {
+        const {state, changeColor} = useContext(ColorPickerContext);
+
         const [isOpenSliderSelect, setIsOpen] = useState(false);
-        const [rgbColor, setRGBColor] = useState(hexToRGB(color));
+        const [rgbColor, setRGBColor] = useState(hexToRGB(state.color));
+
 
         useEffect(() => {
             setIsOpen(isSliderColorSelectOpen);
-            if (!isSliderColorSelectOpen) {
-                setRGBColor(hexToRGB(color));
-            }
-        }, [isSliderColorSelectOpen, color]);
+            setRGBColor(hexToRGB(state.color));
+        }, [isSliderColorSelectOpen, state.color]);
 
         const changeColorHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
             setRGBColor({...(rgbColor as rgbColor), [event.target.id]: +event.target.value});

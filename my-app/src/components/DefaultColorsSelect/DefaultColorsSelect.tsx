@@ -1,21 +1,20 @@
-import React, { memo } from 'react';
+import React, { memo, useContext } from 'react';
+import { ColorPickerContext } from '../../context/colorPicker/colorPicker.context';
 import './DefaultColorsSelect.css';
 import { Hex } from '../../types/Hex.type' ;
 
 interface DefaultColorsBoxProps {
     isOpen: boolean,
     openDefaultColorsSelect: () => void,
-    changeColor: (color: Hex) => void,
-    curColor: string,
 }
 
 interface DefaultColor {
     name: string,
-    color: string,
+    color: Hex,
 }
 
-function DefaultColorsSelect({isOpen, openDefaultColorsSelect, changeColor, curColor}: DefaultColorsBoxProps) {
-
+function DefaultColorsSelect({isOpen, openDefaultColorsSelect}: DefaultColorsBoxProps) {
+    const {state, changeColor} = useContext(ColorPickerContext);
     const colors: DefaultColor[] = [
         {name: 'red', color: '#E0222E'},
         {name: 'yellow', color: '#E8B540'},
@@ -53,8 +52,8 @@ function DefaultColorsSelect({isOpen, openDefaultColorsSelect, changeColor, curC
                                     onClick={() => changeColor(item.color as Hex)}
                                 >
                                     <span>{item.name.toUpperCase()}</span>
-                                    <div style={{border: `3px solid ${item.color === curColor ? '#9A9A9A' : 'transparent'}`}}>
-                                        <span className='color-box' style={{backgroundColor: item.color}}></span>
+                                    <div style={{border: `3px solid ${item.color === state.color ? '#9A9A9A' : 'transparent'}`}}>
+                                        <span className='color-box' style={{backgroundColor: item.color as string}}></span>
                                     </div>
                                 </button>
                             </li>

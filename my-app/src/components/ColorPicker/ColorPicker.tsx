@@ -1,14 +1,16 @@
-import React, { memo, useState, useEffect, useRef } from 'react';
+import React, { memo, useState, useEffect, useRef, useContext } from 'react';
+import { ColorPickerContext } from '../../context/colorPicker/colorPicker.context';
 import './ColorPicker.css';
 import DefaultColorsSelect from '../DefaultColorsSelect/DefaultColorsSelect';
 import SliderColorSelect from '../SliderColorSelect/SliderColorSelect';
-import { Hex } from '../../types/Hex.type' ;
 
 function ColorPicker() {
-    const [value, setValue] = useState('#E0222E');
+    const [value, setValue] = useState('#FF0000');
     const [isSliderBoxOpen, setIsSliderBoxOpen] = useState(false);
     const [isDefaultColorsBoxOpen, setIsDefaultColorsBoxOpen] = useState(false);
     const sliderBoxEl = useRef(null);
+
+    const {state} = useContext(ColorPickerContext);
 
     useEffect(() => {
         const clickedOutSide = (event: MouseEvent): void => {
@@ -21,6 +23,7 @@ function ColorPicker() {
             }
             if (isDefaultColorsBoxOpen) {
                 setIsDefaultColorsBoxOpen(false);
+
             }
         };
         document.addEventListener('click', clickedOutSide);
@@ -29,9 +32,9 @@ function ColorPicker() {
         }
     }, [isSliderBoxOpen, isDefaultColorsBoxOpen]);
 
-    const changeColor = (color: Hex): void => {
-        ((/^#?[0-9A-Fa-f]{6}/g).test(color)) ? setValue(color) : alert('Not hex format');
-    };
+    useEffect(() => {
+        setValue(state.color)
+    }, [state])
 
     return (
         <div className='color-picker'>
@@ -40,17 +43,13 @@ function ColorPicker() {
             <SliderColorSelect
                 ref={sliderBoxEl}
                 isSliderColorSelectOpen={isSliderBoxOpen}
-                color={value}
                 openSliderColorSelect={() => setIsSliderBoxOpen(true)}
                 closeSliderBox={() => setIsSliderBoxOpen(false)}
-                changeColor={changeColor}
             />
             <div className='vertical-devider'></div>
             <DefaultColorsSelect
                 isOpen={isDefaultColorsBoxOpen}
                 openDefaultColorsSelect={() => setIsDefaultColorsBoxOpen(true)}
-                changeColor={changeColor}
-                curColor={value}
             />
         </div>
     )
